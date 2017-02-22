@@ -5,4 +5,5 @@ import { Component, OnInit } from '@angular/core';
   selector: 'my-home',
   templateUrl: './home.component.html',
 })
+
 export class HomeComponent {}

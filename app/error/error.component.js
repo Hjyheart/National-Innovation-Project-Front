@@ -9,18 +9,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var ClubComponent = (function () {
-    function ClubComponent() {
+var ErrorComponent = (function () {
+    function ErrorComponent() {
     }
-    ClubComponent = __decorate([
+    ErrorComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            selector: 'my-club',
-            templateUrl: './club.component.html',
+            selector: 'my-error',
+            templateUrl: './error.component.html'
         }), 
         __metadata('design:paramtypes', [])
-    ], ClubComponent);
-    return ClubComponent;
+    ], ErrorComponent);
+    return ErrorComponent;
 }());
-exports.ClubComponent = ClubComponent;
-//# sourceMappingURL=club.component.js.map
+exports.ErrorComponent = ErrorComponent;
+//# sourceMappingURL=error.component.js.map

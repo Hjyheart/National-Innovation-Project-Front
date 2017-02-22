@@ -1,13 +1,14 @@
 import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppComponent }         from './app.component'
-import { HomeComponent }        from './home/home.component'
-import { ClubComponent }        from './club/club.component'
+import { AppComponent }         from './app.component';
+import { HomeComponent }        from './home/home.component';
+import { ErrorComponent }		    from './error/error.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', redirectTo: '/clubs', pathMatch: 'full' },
   { path: 'home',  component: HomeComponent },
-  { path: 'club', component: ClubComponent }
+  // { path: 'club', component: ClubComponent },
+  { path: '**', component: ErrorComponent}
 ];
 
 @NgModule({

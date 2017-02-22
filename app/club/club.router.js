@@ -10,25 +10,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
-var home_component_1 = require('./home/home.component');
-var error_component_1 = require('./error/error.component');
-var routes = [
-    { path: '', redirectTo: '/clubs', pathMatch: 'full' },
-    { path: 'home', component: home_component_1.HomeComponent },
-    // { path: 'club', component: ClubComponent },
-    { path: '**', component: error_component_1.ErrorComponent }
+var club_list_component_1 = require('./clubList/club.list.component');
+var club_detail_component_1 = require('./clubDetail/club.detail.component');
+var clubsRoutes = [
+    { path: 'clubs', component: club_list_component_1.ClubListComponent },
+    { path: 'club/:id', component: club_detail_component_1.ClubDetailComponent }
 ];
-var AppRoutingModule = (function () {
-    function AppRoutingModule() {
+var ClubRoutingModule = (function () {
+    function ClubRoutingModule() {
     }
-    AppRoutingModule = __decorate([
+    ClubRoutingModule = __decorate([
         core_1.NgModule({
-            imports: [router_1.RouterModule.forRoot(routes)],
-            exports: [router_1.RouterModule]
+            imports: [
+                router_1.RouterModule.forChild(clubsRoutes)
+            ],
+            exports: [
+                router_1.RouterModule
+            ]
         }), 
         __metadata('design:paramtypes', [])
-    ], AppRoutingModule);
-    return AppRoutingModule;
+    ], ClubRoutingModule);
+    return ClubRoutingModule;
 }());
-exports.AppRoutingModule = AppRoutingModule;
-//# sourceMappingURL=app-routing.module.js.map
+exports.ClubRoutingModule = ClubRoutingModule;
+//# sourceMappingURL=club.router.js.map
