@@ -12,13 +12,16 @@ var router_1 = require('@angular/router');
 var core_1 = require('@angular/core');
 var club_service_1 = require('../../service/club.service');
 var ClubDetailComponent = (function () {
-    function ClubDetailComponent(route, router, service) {
+    function ClubDetailComponent(route, router, clubService) {
         this.route = route;
         this.router = router;
-        this.service = service;
+        this.clubService = clubService;
     }
     ClubDetailComponent.prototype.ngOnInit = function () {
-        this.clubId = +this.route.snapshot.params['id'];
+        var _this = this;
+        this.clubId = this.route.snapshot.params['id'];
+        this.clubService.getClub(this.clubId)
+            .subscribe(function (club) { return _this.club = club; });
     };
     ClubDetailComponent = __decorate([
         core_1.Component({

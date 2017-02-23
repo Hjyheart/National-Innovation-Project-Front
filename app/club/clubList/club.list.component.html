@@ -1,4 +1,9 @@
 <div>
 	<p>club list</p>
-	<a [routerLink]="['/club', 1]" routerLinkActive="active">1</a>
+	<div *ngIf="clubs">
+		<div *ngFor="let club of clubs" >
+			<p>{{club.mName}}</p>
+			<a [routerLink]="['/club', club.mId]" routerLinkActive=“active”>{{club.mId}}</a>
+		</div>
+	</div>
 </div>

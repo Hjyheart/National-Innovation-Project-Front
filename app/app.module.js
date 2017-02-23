@@ -10,9 +10,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
+var http_1 = require('@angular/http');
 var app_component_1 = require('./app.component');
 var home_component_1 = require('./home/home.component');
 var error_component_1 = require('./error/error.component');
+var login_component_1 = require('./login/login.component');
 var app_routing_module_1 = require('./app-routing.module');
 var club_module_1 = require('./club/club.module');
 var AppModule = (function () {
@@ -22,13 +24,16 @@ var AppModule = (function () {
         core_1.NgModule({
             imports: [
                 platform_browser_1.BrowserModule,
+                http_1.HttpModule,
+                http_1.JsonpModule,
                 club_module_1.ClubModule,
                 app_routing_module_1.AppRoutingModule
             ],
             declarations: [
                 app_component_1.AppComponent,
                 home_component_1.HomeComponent,
-                error_component_1.ErrorComponent
+                error_component_1.ErrorComponent,
+                login_component_1.LoginComponent
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 

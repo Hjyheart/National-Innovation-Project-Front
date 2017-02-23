@@ -10,20 +10,34 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
+var club_service_1 = require('../../service/club.service');
 var ClubListComponent = (function () {
-    function ClubListComponent(router) {
+    function ClubListComponent(router, clubService) {
         this.router = router;
+        this.clubService = clubService;
     }
+    ClubListComponent.prototype.ngOnInit = function () {
+        this.getClubs();
+    };
     ClubListComponent.prototype.turn = function () {
         this.router.navigate(['/club', 1]);
+    };
+    ClubListComponent.prototype.getClubs = function () {
+        var _this = this;
+        this.clubService.getClubs()
+            .subscribe(function (clubs) { return _this.clubs = clubs; });
+    };
+    ClubListComponent.prototype.test = function () {
+        console.log(this.clubs[0]);
     };
     ClubListComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
             selector: 'my-club-list',
-            templateUrl: './club.list.component.html'
+            templateUrl: './club.list.component.html',
+            providers: [club_service_1.ClubService]
         }), 
-        __metadata('design:paramtypes', [router_1.Router])
+        __metadata('design:paramtypes', [router_1.Router, club_service_1.ClubService])
     ], ClubListComponent);
     return ClubListComponent;
 }());
