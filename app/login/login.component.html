@@ -1,12 +1,9 @@
-<!-- <form #signinForm="ngForm" (ngSubmit)="signIn(signinForm)">
-  <label for="id">Email</label>
-  <input type="text" name="id" id="id" [(ngModel)]="id">
+<form #signinForm="ngForm" (ngSubmit)="signIn(signinForm)">
+  <label for="id">学号</label>
+  <input type="text" name="id" required id="id" [(ngModel)]="id">
 
-  <label for="password">Password</label>
-  <input type="password" name="password" id="password" [(ngModel)]="password">
+  <label for="password">密码</label>
+  <input type="password" name="password" required id="password" [(ngModel)]="password">
 
   <button type="submit">Sign Up</button>
-</form> -->
-<div>
-  <p>waiting</p>
-</div>
+</form>

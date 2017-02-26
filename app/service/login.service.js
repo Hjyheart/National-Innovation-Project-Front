@@ -9,14 +9,50 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var http_1 = require('@angular/http');
+var http_2 = require('@angular/http');
+var Observable_1 = require('rxjs/Observable');
 require('rxjs/add/operator/map');
 require('rxjs/add/operator/catch');
+require('rxjs/add/operator/toPromise');
 var LoginService = (function () {
-    function LoginService() {
+    function LoginService(http) {
+        this.http = http;
+        this.server = "http://localhost:8080/";
+        this.LOGIN = this.server + "login/check";
     }
+    LoginService.prototype.login = function (id, password) {
+        var headers = new http_2.Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+        var options = new http_2.RequestOptions({ headers: headers });
+        return this.http.post(this.LOGIN, 'ID=' + id + '&PASSWORD=' + password, options)
+            .map(function (res) { return res.json(); })
+            .catch(this.handleError);
+    };
+    LoginService.prototype.setSession = function (username) {
+        this.session.userName = username;
+        this.session.state = true;
+    };
+    LoginService.prototype.extractData = function (res) {
+        console.log(res.json());
+        return res.json() || {};
+    };
+    LoginService.prototype.handleError = function (error) {
+        // In a real world app, we might use a remote logging infrastructure
+        var errMsg;
+        if (error instanceof http_1.Response) {
+            var body = error.json() || '';
+            var err = body.error || JSON.stringify(body);
+            errMsg = error.status + " - " + (error.statusText || '') + " " + err;
+        }
+        else {
+            errMsg = error.message ? error.message : error.toString();
+        }
+        console.error(errMsg);
+        return Observable_1.Observable.throw(errMsg);
+    };
     LoginService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [http_1.Http])
     ], LoginService);
     return LoginService;
 }());
