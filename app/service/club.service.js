@@ -13,18 +13,17 @@ var http_1 = require('@angular/http');
 var Observable_1 = require('rxjs/Observable');
 require('rxjs/add/operator/map');
 require('rxjs/add/operator/catch');
+var api_service_1 = require("./api.service");
 var ClubService = (function () {
-    function ClubService(http) {
+    function ClubService(http, api) {
         this.http = http;
-        this.server = "http://localhost:8080/";
-        this.GETCLUBLIST = this.server + "club/all";
-        this.GETCLUBDETAIL = this.server + "club/profile?id=";
+        this.api = api;
     }
     /**
     *获取俱乐部列表
     */
     ClubService.prototype.getClubs = function () {
-        return this.http.get(this.GETCLUBLIST)
+        return this.http.get(this.api.GETCLUBLIST)
             .map(this.extractData)
             .catch(this.handleError);
         // .catch((error: Response | any) => console.log(error));
@@ -33,7 +32,7 @@ var ClubService = (function () {
     *获取俱乐部详情
     */
     ClubService.prototype.getClub = function (id) {
-        return this.http.get(this.GETCLUBDETAIL + id)
+        return this.http.get(this.api.GETCLUBDETAIL + id)
             .map(this.extractData)
             .catch(this.handleError);
     };
@@ -57,7 +56,7 @@ var ClubService = (function () {
     };
     ClubService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http])
+        __metadata('design:paramtypes', [http_1.Http, api_service_1.ApiService])
     ], ClubService);
     return ClubService;
 }());

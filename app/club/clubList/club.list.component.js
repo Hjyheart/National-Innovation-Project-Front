@@ -19,9 +19,6 @@ var ClubListComponent = (function () {
     ClubListComponent.prototype.ngOnInit = function () {
         this.getClubs();
     };
-    ClubListComponent.prototype.turn = function () {
-        this.router.navigate(['/club', 1]);
-    };
     ClubListComponent.prototype.getClubs = function () {
         var _this = this;
         this.clubService.getClubs()

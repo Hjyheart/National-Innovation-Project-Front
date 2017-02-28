@@ -21,7 +21,7 @@ var ClubDetailComponent = (function () {
         var _this = this;
         this.clubId = this.route.snapshot.params['id'];
         this.clubService.getClub(this.clubId)
-            .subscribe(function (club) { return _this.club = club; });
+            .subscribe(function (club) { _this.club = club; }, function (error) { console.log(error); });
     };
     ClubDetailComponent = __decorate([
         core_1.Component({

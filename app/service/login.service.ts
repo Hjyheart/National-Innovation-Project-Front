@@ -5,33 +5,35 @@ import { Observable }     from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/do';
+import {ApiService} from "./api.service";
 
-import { Session } from '../entity/session';
+// import { Session } from '../entity/session';
 
 @Injectable()
 export class LoginService{
-  private server = `http://localhost:8080/`;
-  private LOGIN = this.server + `login/check`;
-  private session: Session;
 
-  constructor(private http: Http){}
+  constructor(
+    private http: Http,
+    private api: ApiService
+  ){
+
+  }
 
   login(id: string, password: string):Observable<boolean>{
     let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
     let options = new RequestOptions({ headers: headers });
-    return this.http.post(this.LOGIN, 'ID=' + id + '&PASSWORD=' + password, options)
-                    .map(res => res.json())
-                    .catch(this.handleError);
+    return this.http.post(this.api.LOGIN, 'ID=' + id + '&PASSWORD=' + password, options)
+      .map(res => {
+        localStorage.setItem('currentUser', id);
+        return res.json();
+      })
+      .catch(this.handleError);
+
   }
 
-  setSession(username: string){
-      this.session.userName = username;
-      this.session.state = true;
-  }
-
-  private extractData(res: Response) {
-    console.log(res.json());
-    return res.json() || { };
+  loginOut(){
+      localStorage.removeItem('currentUser');
   }
 
   private handleError (error: Response | any) {

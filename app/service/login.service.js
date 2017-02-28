@@ -15,26 +15,26 @@ var Observable_1 = require('rxjs/Observable');
 require('rxjs/add/operator/map');
 require('rxjs/add/operator/catch');
 require('rxjs/add/operator/toPromise');
+require('rxjs/add/operator/do');
+var api_service_1 = require("./api.service");
+// import { Session } from '../entity/session';
 var LoginService = (function () {
-    function LoginService(http) {
+    function LoginService(http, api) {
         this.http = http;
-        this.server = "http://localhost:8080/";
-        this.LOGIN = this.server + "login/check";
+        this.api = api;
     }
     LoginService.prototype.login = function (id, password) {
         var headers = new http_2.Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
         var options = new http_2.RequestOptions({ headers: headers });
-        return this.http.post(this.LOGIN, 'ID=' + id + '&PASSWORD=' + password, options)
-            .map(function (res) { return res.json(); })
+        return this.http.post(this.api.LOGIN, 'ID=' + id + '&PASSWORD=' + password, options)
+            .map(function (res) {
+            localStorage.setItem('currentUser', id);
+            return res.json();
+        })
             .catch(this.handleError);
     };
-    LoginService.prototype.setSession = function (username) {
-        this.session.userName = username;
-        this.session.state = true;
-    };
-    LoginService.prototype.extractData = function (res) {
-        console.log(res.json());
-        return res.json() || {};
+    LoginService.prototype.loginOut = function () {
+        localStorage.removeItem('currentUser');
     };
     LoginService.prototype.handleError = function (error) {
         // In a real world app, we might use a remote logging infrastructure
@@ -52,7 +52,7 @@ var LoginService = (function () {
     };
     LoginService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http])
+        __metadata('design:paramtypes', [http_1.Http, api_service_1.ApiService])
     ], LoginService);
     return LoginService;
 }());

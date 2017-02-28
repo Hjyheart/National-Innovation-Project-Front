@@ -12,9 +12,18 @@ var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var club_list_component_1 = require('./clubList/club.list.component');
 var club_detail_component_1 = require('./clubDetail/club.detail.component');
+var login_route_guard_service_1 = require('../service/login.route.guard.service');
 var clubsRoutes = [
-    { path: 'clubs', component: club_list_component_1.ClubListComponent },
-    { path: 'club/:id', component: club_detail_component_1.ClubDetailComponent }
+    {
+        path: 'clubs',
+        component: club_list_component_1.ClubListComponent,
+        canActivate: [login_route_guard_service_1.LoginRouteGuard]
+    },
+    {
+        path: 'club/:id',
+        component: club_detail_component_1.ClubDetailComponent,
+        canActivate: [login_route_guard_service_1.LoginRouteGuard]
+    }
 ];
 var ClubRoutingModule = (function () {
     function ClubRoutingModule() {

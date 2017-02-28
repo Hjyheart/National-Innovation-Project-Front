@@ -1,0 +1,9 @@
+<div>
+  <p>活动列表</p>
+  <div *ngIf="activities">
+    <div *ngFor="let act of activities" >
+      <p>{{act.mName}}</p>
+      <a [routerLink]="['/activity', act.mId]" routerLinkActive=“active”>{{act.mId}}</a>
+    </div>
+  </div>
+</div>

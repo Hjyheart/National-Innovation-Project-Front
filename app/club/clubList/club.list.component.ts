@@ -25,15 +25,11 @@ export class ClubListComponent implements OnInit {
 		this.getClubs();
 	}
 
-	turn(){
-		this.router.navigate(['/club', 1]);
-	}
-
 	getClubs(){
 		this.clubService.getClubs()
-										.subscribe(
-											clubs => this.clubs = clubs
-										);
+			.subscribe(
+				clubs => this.clubs = clubs
+			);
 	}
 
 	test(){

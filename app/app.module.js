@@ -15,9 +15,13 @@ var forms_1 = require('@angular/forms');
 var app_component_1 = require('./app.component');
 var home_component_1 = require('./home/home.component');
 var error_component_1 = require('./error/error.component');
-var login_component_1 = require('./login/login.component');
 var app_routing_module_1 = require('./app-routing.module');
 var club_module_1 = require('./club/club.module');
+var login_module_1 = require("./login/login.module");
+var login_routing_module_1 = require("./login/login.routing.module");
+var activity_module_1 = require("./activity/activity.module");
+var api_service_1 = require("./service/api.service");
+var sidebar_component_1 = require("./sideBar/sidebar.component");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -29,13 +33,19 @@ var AppModule = (function () {
                 forms_1.FormsModule,
                 http_1.JsonpModule,
                 club_module_1.ClubModule,
+                activity_module_1.ActivityModule,
+                login_module_1.LoginModule,
+                login_routing_module_1.LoginRoutingModule,
                 app_routing_module_1.AppRoutingModule
             ],
             declarations: [
                 app_component_1.AppComponent,
                 home_component_1.HomeComponent,
                 error_component_1.ErrorComponent,
-                login_component_1.LoginComponent
+                sidebar_component_1.SideBarComponent
+            ],
+            providers: [
+                api_service_1.ApiService
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 

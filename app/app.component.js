@@ -12,7 +12,9 @@ var core_1 = require('@angular/core');
 var AppComponent = (function () {
     function AppComponent() {
         this.name = 'Hjyheart';
+        this.isLoginPage = false;
     }
+    AppComponent.prototype.ngOnInit = function () { };
     AppComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

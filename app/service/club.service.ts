@@ -5,20 +5,22 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 import { Club } from '../entity/club';
+import {ApiService} from "./api.service";
+
 
 @Injectable()
 export class ClubService {
-	private server = `http://localhost:8080/`;
-	private GETCLUBLIST = this.server + `club/all`;
-	private GETCLUBDETAIL = this.server + `club/profile?id=`;
 
-	constructor (private http: Http) {}
+	constructor (
+	  private http: Http,
+    private api: ApiService
+  ) {}
 
 		/**
 		*获取俱乐部列表
 		*/
   	getClubs():Observable<Club[]>{
-  		return this.http.get(this.GETCLUBLIST)
+  		return this.http.get(this.api.GETCLUBLIST)
 							.map(this.extractData)
 							.catch(this.handleError);
   						// .catch((error: Response | any) => console.log(error));
@@ -28,7 +30,7 @@ export class ClubService {
 		*获取俱乐部详情
 		*/
 		getClub(id: string):Observable<Club>{
-			return this.http.get(this.GETCLUBDETAIL + id)
+			return this.http.get(this.api.GETCLUBDETAIL + id)
 											.map(this.extractData)
 											.catch(this.handleError);
 		}
