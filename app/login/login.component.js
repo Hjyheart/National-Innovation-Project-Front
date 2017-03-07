@@ -16,12 +16,10 @@ var LoginComponent = (function () {
         this.route = route;
         this.loginService = loginService;
         this.router = router;
-        this.loginState = true;
     }
     LoginComponent.prototype.ngOnInit = function () {
         this.id = '';
         this.password = '';
-        this.loginService.loginOut();
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     };
     LoginComponent.prototype.signIn = function (form) {

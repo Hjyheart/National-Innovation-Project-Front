@@ -1,9 +1,23 @@
-<div>
-	<p>club list</p>
-	<div *ngIf="clubs">
-		<div *ngFor="let club of clubs" >
-			<p>{{club.mName}}</p>
-			<a [routerLink]="['/club', club.mId]" routerLinkActive=“active”>{{club.mId}}</a>
-		</div>
-	</div>
-</div>
+<section id="main-content">
+	<section class="wrapper site-min-height">
+    <h3 style="color: white;"><i class="fa fa-angle-right"></i>社团列表</h3>
+
+    <div class="row mt" *ngIf="clubs">
+     <div class="col-lg-12">
+       <div class="row" *ngFor="let three of clubs" style="margin: 15px">
+
+         <div class="col-lg-4 col-md-4 col-sm-4 md" *ngFor="let club of three">
+           <div class="instagram-panel pn" style="border-radius: 15px">
+             <i class="fa fa-instagram fa-4x"></i>
+             <p>{{club.mName}}<br/>
+               {{club.mActivities.length}} 项活动
+             </p>
+             <p><i class="fa fa-comment"></i> 18 | <i class="fa fa-heart"></i> 49 </p>
+           </div>
+         </div>
+       </div>
+
+     </div>
+    </div>
+	</section>
+</section>

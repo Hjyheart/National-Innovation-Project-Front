@@ -1,18 +1,4 @@
-<!--<form #signinForm="ngForm" (ngSubmit)="signIn(signinForm)">-->
-  <!--<label for="id">学号</label>-->
-  <!--<input type="text" name="id" required id="id" [(ngModel)]="id">-->
-
-  <!--<label for="password">密码</label>-->
-  <!--<input type="password" name="password" required id="password" [(ngModel)]="password">-->
-
-  <!--<button type="submit">Sign Up</button>-->
-<!--</form>-->
-
-<!--<div>-->
-  <!--<button (click)="logout()">Logout</button>-->
-<!--</div>-->
-
-<div id="login-page" *ngIf="loginState">
+<div id="login-page" *ngIf="!loginService.loginState">
   <div class="container">
     <form class="form-login"  #signinForm="ngForm" (ngSubmit)="signIn(signinForm)">
       <h2 class="form-login-heading">登录</h2>
@@ -28,12 +14,6 @@
         </label>
         <button class="btn btn-theme btn-block" type="submit"><i class="fa fa-lock"></i> 登录</button>
         <hr>
-
-        <!--<div class="login-social-link centered">-->
-          <!--<p>or you can sign in via your social network</p>-->
-          <!--<button class="btn btn-facebook" type="submit"><i class="fa fa-facebook"></i> Facebook</button>-->
-          <!--<button class="btn btn-twitter" type="submit"><i class="fa fa-twitter"></i> Twitter</button>-->
-        <!--</div>-->
         <div class="registration">
           没有账号?<br/>
           <a class="" href="#">
@@ -68,5 +48,6 @@
     </form>
 
   </div>
+
 </div>
 

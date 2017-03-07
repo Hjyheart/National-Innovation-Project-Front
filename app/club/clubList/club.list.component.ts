@@ -14,7 +14,7 @@ import { Club } from '../../entity/club';
 
 export class ClubListComponent implements OnInit {
 
-	private clubs: Club[];
+	private clubs: Array<Club[]> = [];
 
 	constructor(
 		private router: Router,
@@ -28,7 +28,23 @@ export class ClubListComponent implements OnInit {
 	getClubs(){
 		this.clubService.getClubs()
 			.subscribe(
-				clubs => this.clubs = clubs
+				clubs => {
+					for(let i = 0; i < clubs.length;){
+					  let three: Club[] = [];
+					  for(let k = 0; k < 3; k++){
+					    if (i < clubs.length){
+                three.push(clubs[i]);
+                i++;
+              }else{
+					      this.clubs.push(three);
+					      console.table(this.clubs);
+					      return;
+              }
+            }
+            this.clubs.push(three);
+          }
+          console.table(this.clubs);
+				}
 			);
 	}
 

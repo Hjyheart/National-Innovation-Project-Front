@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ElementRef} from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LoginService } from "../service/login.service";
 
+declare var $:any;
 
 @Component({
   moduleId: module.id,
@@ -15,18 +16,16 @@ export class LoginComponent implements OnInit{
   private id: string;
   private password: string;
   returnUrl: string;
-  loginState: boolean = true;
 
   constructor(
     private route: ActivatedRoute,
     private loginService: LoginService,
-    private router: Router
+    private router: Router,
   ){}
 
   ngOnInit(){
     this.id = '';
     this.password = '';
-    this.loginService.loginOut();
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
@@ -44,4 +43,5 @@ export class LoginComponent implements OnInit{
   logout(){
     this.loginService.loginOut();
   }
+
 }

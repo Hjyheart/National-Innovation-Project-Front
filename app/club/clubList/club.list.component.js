@@ -15,6 +15,7 @@ var ClubListComponent = (function () {
     function ClubListComponent(router, clubService) {
         this.router = router;
         this.clubService = clubService;
+        this.clubs = [];
     }
     ClubListComponent.prototype.ngOnInit = function () {
         this.getClubs();
@@ -22,7 +23,24 @@ var ClubListComponent = (function () {
     ClubListComponent.prototype.getClubs = function () {
         var _this = this;
         this.clubService.getClubs()
-            .subscribe(function (clubs) { return _this.clubs = clubs; });
+            .subscribe(function (clubs) {
+            for (var i = 0; i < clubs.length;) {
+                var three = [];
+                for (var k = 0; k < 3; k++) {
+                    if (i < clubs.length) {
+                        three.push(clubs[i]);
+                        i++;
+                    }
+                    else {
+                        _this.clubs.push(three);
+                        console.table(_this.clubs);
+                        return;
+                    }
+                }
+                _this.clubs.push(three);
+            }
+            console.table(_this.clubs);
+        });
     };
     ClubListComponent.prototype.test = function () {
         console.log(this.clubs[0]);

@@ -15,8 +15,10 @@ import {LoginModule} from "./login/login.module";
 import {LoginRoutingModule} from "./login/login.routing.module";
 import {ActivityModule} from "./activity/activity.module";
 import {ApiService} from "./service/api.service";
-import {LoginComponent} from "./login/login.component";
 import {SideBarComponent} from "./sideBar/sidebar.component";
+import {HeaderComponent} from "./header/header.component";
+import {MyDatePickerModule} from "mydatepicker";
+
 
 @NgModule({
   imports:      [
@@ -27,6 +29,7 @@ import {SideBarComponent} from "./sideBar/sidebar.component";
     ClubModule,
     ActivityModule,
     LoginModule,
+    MyDatePickerModule,
     LoginRoutingModule,
     AppRoutingModule
    ],
@@ -34,7 +37,8 @@ import {SideBarComponent} from "./sideBar/sidebar.component";
     AppComponent,
     HomeComponent,
     ErrorComponent,
-    SideBarComponent
+    SideBarComponent,
+    HeaderComponent
    ],
   providers: [
     ApiService

@@ -22,19 +22,30 @@ var LoginService = (function () {
     function LoginService(http, api) {
         this.http = http;
         this.api = api;
+        if (localStorage.getItem('currentUser')) {
+            this.loginState = true;
+        }
+        else {
+            this.loginState = false;
+        }
     }
     LoginService.prototype.login = function (id, password) {
+        var _this = this;
         var headers = new http_2.Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
         var options = new http_2.RequestOptions({ headers: headers });
         return this.http.post(this.api.LOGIN, 'ID=' + id + '&PASSWORD=' + password, options)
             .map(function (res) {
-            localStorage.setItem('currentUser', id);
-            return res.json();
+            if (res.json() === true) {
+                localStorage.setItem('currentUser', id);
+                _this.loginState = true;
+                return res.json();
+            }
         })
             .catch(this.handleError);
     };
     LoginService.prototype.loginOut = function () {
         localStorage.removeItem('currentUser');
+        this.loginState = false;
     };
     LoginService.prototype.handleError = function (error) {
         // In a real world app, we might use a remote logging infrastructure

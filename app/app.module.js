@@ -22,6 +22,8 @@ var login_routing_module_1 = require("./login/login.routing.module");
 var activity_module_1 = require("./activity/activity.module");
 var api_service_1 = require("./service/api.service");
 var sidebar_component_1 = require("./sideBar/sidebar.component");
+var header_component_1 = require("./header/header.component");
+var mydatepicker_1 = require("mydatepicker");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -35,6 +37,7 @@ var AppModule = (function () {
                 club_module_1.ClubModule,
                 activity_module_1.ActivityModule,
                 login_module_1.LoginModule,
+                mydatepicker_1.MyDatePickerModule,
                 login_routing_module_1.LoginRoutingModule,
                 app_routing_module_1.AppRoutingModule
             ],
@@ -42,7 +45,8 @@ var AppModule = (function () {
                 app_component_1.AppComponent,
                 home_component_1.HomeComponent,
                 error_component_1.ErrorComponent,
-                sidebar_component_1.SideBarComponent
+                sidebar_component_1.SideBarComponent,
+                header_component_1.HeaderComponent
             ],
             providers: [
                 api_service_1.ApiService

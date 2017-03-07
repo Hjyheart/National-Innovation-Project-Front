@@ -1,4 +1,14 @@
 <section id="container">
-  <my-sidebar *ngIf="false"></my-sidebar>
+  <my-header *ngIf="loginService.loginState"></my-header>
+  <my-sidebar *ngIf="loginService.loginState"></my-sidebar>
   <router-outlet></router-outlet>
+
+  <footer class="site-footer">
+    <div class="text-center">
+      2017 - 鲜活开发团队
+      <a href="panels.html#" class="go-top">
+        <i class="fa fa-angle-up"></i>
+      </a>
+    </div>
+  </footer>
 </section>

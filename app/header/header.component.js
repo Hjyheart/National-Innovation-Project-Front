@@ -8,25 +8,29 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+/**
+ * Created by hongjiayong on 2017/2/28.
+ */
 var core_1 = require('@angular/core');
-// import ng-bootstrap directives
-var login_service_1 = require("./service/login.service");
-var AppComponent = (function () {
-    function AppComponent(loginService) {
+var login_service_1 = require("../service/login.service");
+var HeaderComponent = (function () {
+    function HeaderComponent(loginService) {
         this.loginService = loginService;
-        this.name = 'Hjyheart';
-        this.isLoginPage = false;
     }
-    AppComponent.prototype.ngOnInit = function () { };
-    AppComponent = __decorate([
+    HeaderComponent.prototype.ngOnInit = function () {
+    };
+    HeaderComponent.prototype.logOut = function () {
+        this.loginService.loginOut();
+    };
+    HeaderComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            selector: 'my-app',
-            templateUrl: './app.component.html',
+            selector: 'my-header',
+            templateUrl: 'header.component.html'
         }), 
         __metadata('design:paramtypes', [login_service_1.LoginService])
-    ], AppComponent);
-    return AppComponent;
+    ], HeaderComponent);
+    return HeaderComponent;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.HeaderComponent = HeaderComponent;
+//# sourceMappingURL=header.component.js.map

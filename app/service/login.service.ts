@@ -13,11 +13,17 @@ import {ApiService} from "./api.service";
 @Injectable()
 export class LoginService{
 
+  loginState: boolean;
+
   constructor(
     private http: Http,
     private api: ApiService
   ){
-
+    if (localStorage.getItem('currentUser')){
+      this.loginState = true;
+    }else{
+      this.loginState = false;
+    }
   }
 
   login(id: string, password: string):Observable<boolean>{
@@ -25,8 +31,11 @@ export class LoginService{
     let options = new RequestOptions({ headers: headers });
     return this.http.post(this.api.LOGIN, 'ID=' + id + '&PASSWORD=' + password, options)
       .map(res => {
-        localStorage.setItem('currentUser', id);
-        return res.json();
+        if (res.json() === true) {
+          localStorage.setItem('currentUser', id);
+          this.loginState = true;
+          return res.json();
+        }
       })
       .catch(this.handleError);
 
@@ -34,6 +43,7 @@ export class LoginService{
 
   loginOut(){
       localStorage.removeItem('currentUser');
+      this.loginState = false;
   }
 
   private handleError (error: Response | any) {
